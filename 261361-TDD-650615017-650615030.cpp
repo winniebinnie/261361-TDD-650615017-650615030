@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+
+    char letter;
+    int counter = 0;
+    int spaces1 = 0;
+    int spaces2 = 0;
+    string output = "";
+
+    cout << "Enter a letter: ";
+    cin >> letter;
+
+    int n;
+    n = letter - 'A' + 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        // Places 'A' in middle of the first row
+        if ((i + 1) % n == 0)
+        {
+            output = output + char('A');
+        }
+        else
+        {
+            output = output + " ";
+            ++spaces1;
+        }
+    }
+
+    output = output + "\n";
+
+    // Top half of the diamond
+    for (int i = 1; i < n; i++)
+    {
+        spaces2 = spaces2 + 2;
+        --spaces1;
+        for (int j = 0; j < spaces1; j++)
+        {
+            output = output + " ";
+        }
+        output = output + char('A' + i);
+        for (int j = 0; j < spaces2; j++)
+        {
+            output = output + " ";
+        }
+        output = output + char('A' + i);
+        output = output + "\n";
+    }
+    for (int i = n - 1; i > 0; i--)
+    {
+        spaces2 = spaces2 - 2;
+        ++spaces1;
+        for (int j = 0; j < spaces1; j++)
+        {
+            output = output + " ";
+        }
+        if(i == 1){
+            output = output + char('A' + (i - 1));
+            break;
+        }
+        output = output + char('A' + (i - 1));
+        for (int j = 0; j < spaces2; j++)
+        {
+            output = output + " ";
+        }
+        output = output + char('A' + (i - 1));
+        output = output + "\n";
+    }
+    cout << output;
+    return 0;
+}
